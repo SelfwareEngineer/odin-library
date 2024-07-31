@@ -106,6 +106,7 @@ body {
   padding: 5vh 10vh;
   text-align: center;
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   align-items: center;
 }
@@ -115,13 +116,15 @@ body {
   background-color: hsl(33, 100%, 88%);
   position: sticky;
   top: 0;
+  padding: 0.5rem 0;
+}
+
 .page-title-container h1 {
   font-family: medieval;
   font-size: 3rem;
 }
 
 .library {
-  margin-top: 1rem;
   border-radius: 0.5rem;
   width: 100%;
   display: grid;
@@ -134,4 +137,20 @@ body {
   background-color: hsl(33, 100%, 94%);
   border-radius: 0.5rem;
   padding: 1rem;
+}
+
+.add-book {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  padding: 0.5rem;
+}
+
+.add-book svg {
+  height: 1.5rem;
+}
+
+.add-book p {
+  text-wrap: nowrap;
 }
