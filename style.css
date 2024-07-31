@@ -82,6 +82,15 @@ h6 {
   isolation: isolate;
 }
 
+@font-face {
+  font-family: "medieval";
+  src:
+    url("fonts/princevaliant-webfont.woff2") format("woff2"),
+    url("fonts/princevaliant-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background: url("images/library-background.jpg");
   background-size: cover;
@@ -106,6 +115,9 @@ body {
   background-color: hsl(33, 100%, 88%);
   position: sticky;
   top: 0;
+.page-title-container h1 {
+  font-family: medieval;
+  font-size: 3rem;
 }
 
 .library {
