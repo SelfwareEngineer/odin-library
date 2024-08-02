@@ -91,11 +91,42 @@ h6 {
   font-style: normal;
 }
 
+@font-face {
+  font-family: "book title";
+  src:
+    url("fonts/klarissa-webfont.woff2") format("woff2"),
+    url("fonts/klarissa-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "book text";
+  src:
+    url("fonts/simplysans-book-webfont.woff2") format("woff2"),
+    url("fonts/simplysans-book-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background: url("images/library-background.jpg");
   background-size: cover;
   display: flex;
   justify-content: center;
+  font-family: "book text";
+}
+
+h4 {
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+p,
+span {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.5rem;
 }
 
 .content {
@@ -112,7 +143,7 @@ body {
 }
 
 .page-title-container {
-  width: 100%;
+  width: calc(100% + 7vh);
   background-color: hsl(33, 100%, 88%);
   position: sticky;
   top: 0;
@@ -123,21 +154,20 @@ body {
 
 .page-title-container h1 {
   font-family: medieval;
-  font-size: 3rem;
+  font-size: 5rem;
 }
 
 .library {
   border-radius: 0.5rem;
-  width: 100%;
   display: grid;
   gap: 1rem;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
 .book {
   position: relative;
-  padding: 1rem 1rem 1rem 14%;
+  padding: 1rem 1rem 1rem 15%;
 }
 
 .book::before {
@@ -151,16 +181,7 @@ body {
   background-size: cover;
   border-radius: 0.5rem;
   filter: hue-rotate(0deg) brightness(1);
-}
-
-.book-content {
-  /* Maybe get rid of this section if I can find a good stamp font */
-  position: relative;
-  background-color: hsl(0, 0%, 100%, 30%);
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-
-  z-index: 1; /* .book::after covers this otherwise */
+  box-shadow: 0.2rem 0.2rem 0.5rem 0 hsl(0, 0%, 0%, 70%);
 }
 
 .book::after {
@@ -173,6 +194,35 @@ body {
   background: url("images/book-threads.png");
   background-size: cover;
   border-radius: 0.5rem;
+}
+
+.book-content {
+  position: relative;
+
+  /* Maybe get rid of this section if I can find a good stamp font */
+  background-color: hsl(0, 0%, 100%, 10%);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  z-index: 1; /* .book::after covers this otherwise */
+}
+
+.book-title {
+  font-family: "book title";
+  letter-spacing: 0.2rem;
+  font-size: 2rem;
+  color: hsl(0, 0%, 0%, 100%);
+}
+
+.book-text {
+  font-family: "book text";
+}
+
+.status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .add-book {

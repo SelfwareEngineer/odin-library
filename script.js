@@ -14,24 +14,38 @@ for (let i = 0; i < defaultBookCount; i++) {
 
   const title = document.createElement("h3");
   title.textContent = "Placeholder";
+  title.classList.add("book-title");
   bookContent.appendChild(title);
 
   const author = document.createElement("h4");
   author.textContent = "by Author";
+  author.classList.add("book-text");
   bookContent.appendChild(author);
 
   const descHeader = document.createElement("h4");
   descHeader.textContent = "Description:";
+  descHeader.classList.add("book-text");
   bookContent.appendChild(descHeader);
 
-  const desc = document.createElement("p");
-  desc.textContent =
+  const description = document.createElement("p");
+  description.textContent =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-  bookContent.appendChild(desc);
+  description.classList.add("book-text");
+  bookContent.appendChild(description);
+
+  const statusContainer = document.createElement("div");
+  statusContainer.classList.add("status-container");
+  bookContent.appendChild(statusContainer);
 
   const status = document.createElement("h4");
-  status.textContent = "Status: not read";
-  bookContent.appendChild(status);
+  status.textContent = "Status: ";
+  status.classList.add("book-text");
+  statusContainer.appendChild(status);
+
+  const statusValue = document.createElement("span");
+  statusValue.textContent = "Not read";
+  statusValue.classList.add("book-text");
+  statusContainer.appendChild(statusValue);
 
   library.appendChild(book);
 }
