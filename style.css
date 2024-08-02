@@ -103,7 +103,7 @@ body {
   min-height: 100vh;
   border-radius: 0.5rem;
   background-color: hsl(33, 100%, 88%);
-  padding: 0 7vh 5vh;
+  padding: 5vh 7vh;
   text-align: center;
   display: flex;
   gap: 3rem;
@@ -116,13 +116,13 @@ body {
   background-color: hsl(33, 100%, 88%);
   position: sticky;
   top: 0;
-  padding: 0.5rem 0;
+  padding: 0.75rem 0 0.25rem;
+  box-shadow: 0 1.6rem 1.5rem hsl(33, 100%, 88%);
 }
 
 .page-title-container h1 {
   font-family: medieval;
   font-size: 3rem;
-  padding-top: 2rem;
 }
 
 .library {
