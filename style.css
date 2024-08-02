@@ -109,6 +109,10 @@ h6 {
   font-style: normal;
 }
 
+:root {
+  --book-filter: hue-rotate(0deg) brightness(1);
+}
+
 body {
   background: url("images/library-background.jpg");
   background-size: cover;
@@ -180,7 +184,7 @@ span {
   background: url("images/book-cover.jpg");
   background-size: cover;
   border-radius: 0.5rem;
-  filter: hue-rotate(0deg) brightness(1);
+  filter: var(--book-filter);
   box-shadow: 0.2rem 0.2rem 0.5rem 0 hsl(0, 0%, 0%, 70%);
 }
 
@@ -197,21 +201,22 @@ span {
 }
 
 .book-content {
-  position: relative;
-
   /* Maybe get rid of this section if I can find a good stamp font */
   background-color: hsl(0, 0%, 100%, 10%);
   border-radius: 0.5rem;
   padding: 0.5rem;
 
+  position: relative;
   z-index: 1; /* .book::after covers this otherwise */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .book-title {
   font-family: "book title";
   letter-spacing: 0.2rem;
   font-size: 2rem;
-  color: hsl(0, 0%, 0%, 100%);
 }
 
 .book-text {

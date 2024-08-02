@@ -6,26 +6,30 @@ const library = document.querySelector(".library");
 
 for (let i = 0; i < defaultBookCount; i++) {
   const book = document.createElement("div");
+  const brightness = getRandomNumber(0.75, 1.2);
+  const color = getRandomNumber(0, 360);
+  book.style.setProperty(
+    "--book-filter",
+    `hue-rotate(${color}deg) brightness(${brightness})`,
+  );
   book.classList.add("book");
 
   const bookContent = document.createElement("div");
   bookContent.classList.add("book-content");
   book.appendChild(bookContent);
 
+  const titleContainer = document.createElement("div");
+  bookContent.appendChild(titleContainer);
+
   const title = document.createElement("h3");
   title.textContent = "Placeholder";
   title.classList.add("book-title");
-  bookContent.appendChild(title);
+  titleContainer.appendChild(title);
 
   const author = document.createElement("h4");
   author.textContent = "by Author";
   author.classList.add("book-text");
   bookContent.appendChild(author);
-
-  const descHeader = document.createElement("h4");
-  descHeader.textContent = "Description:";
-  descHeader.classList.add("book-text");
-  bookContent.appendChild(descHeader);
 
   const description = document.createElement("p");
   description.textContent =
@@ -79,4 +83,11 @@ function removeBook(id) {
   // remove book of name from myLibrary
 
   updateLibrary();
+}
+
+function getRandomNumber(min, max) {
+  return (
+    Math.floor((Math.random() * (Math.abs(min) + Math.abs(max)) + min) * 100) /
+    100
+  );
 }
