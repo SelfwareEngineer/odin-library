@@ -67,13 +67,9 @@ function getNewBookNode(Book) {
   author.classList.add("book-text");
   bookContentTop.appendChild(author);
 
-  const bookContentBottom = document.createElement("div");
-  bookContentBottom.classList.add("book-content-bottom");
-  bookElementContent.appendChild(bookContentBottom);
-
   const statusContainer = document.createElement("div");
   statusContainer.classList.add("status-container");
-  bookContentBottom.appendChild(statusContainer);
+  bookContentTop.appendChild(statusContainer);
 
   const status = document.createElement("h4");
   status.textContent = "Status: ";
@@ -89,11 +85,38 @@ function getNewBookNode(Book) {
   statusValue.classList.add("book-text");
   statusContainer.appendChild(statusValue);
 
+  const bookContentBottom = document.createElement("div");
+  bookContentBottom.classList.add("book-content-bottom");
+  bookElementContent.appendChild(bookContentBottom);
+
   const buttonContainer = document.createElement("div");
-  buttonContainer.classList.add("status-container");
+  buttonContainer.classList.add("button-container");
   bookContentBottom.appendChild(buttonContainer);
 
   // Need to find a way to programmatically add SVGs
+  const editBookBtn = document.createElement("button");
+  editBookBtn.type = "button";
+  buttonContainer.appendChild(editBookBtn);
+  editBookBtn.appendChild(
+    getSVG(
+      "http://www.w3.org/2000/svg",
+      "0 0 24 24",
+      "pencil-outline",
+      "M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z",
+    ),
+  );
+
+  const removeBookBtn = document.createElement("button");
+  removeBookBtn.type = "button";
+  buttonContainer.appendChild(removeBookBtn);
+  removeBookBtn.appendChild(
+    getSVG(
+      "http://www.w3.org/2000/svg",
+      "0 0 24 24",
+      "trash-can-outline",
+      "M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z",
+    ),
+  );
 
   return bookElement;
 }
@@ -117,4 +140,19 @@ function removeBook(id) {
 
 function getRandomNumber(num) {
   return Math.floor(Math.random() * num * 100) / 100;
+}
+
+function getSVG(xmlns, viewbox, title, path) {
+  const svg = document.createElementNS(xmlns, "svg");
+  svg.setAttribute("viewbox", viewbox);
+
+  const svgTitle = document.createElementNS(xmlns, "title");
+  svgTitle.textContent = title;
+  svg.appendChild(svgTitle);
+
+  const svgPath = document.createElementNS(xmlns, "path");
+  svgPath.setAttribute("d", path);
+  svg.appendChild(svgPath);
+
+  return svg;
 }
