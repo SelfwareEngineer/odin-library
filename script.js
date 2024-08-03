@@ -76,7 +76,7 @@ function addBookToLibrary(title, author, description, read) {
 function updateLibrary() {
   // clear existing library display
 
-  for (const i of myLibrary) {
+  for (const i in myLibrary) {
     // create card for i and add to library display
   }
 }
