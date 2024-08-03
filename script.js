@@ -9,15 +9,14 @@ let count = 0;
 
 for (let i = 0; i < defaultBookCount; i++) {
   count++;
-  addBookToLibrary("Placeholder " + count, "Author", "test", false);
+  addBookToLibrary("Placeholder " + count, "Author", false);
 }
 
 // Start of actual script
 
-function Book(title, author, description, read) {
+function Book(title, author, read) {
   this.title = title;
   this.author = author;
-  this.description = description;
   this.read = read;
 }
 
@@ -26,8 +25,8 @@ Book.prototype.toggleRead = function () {
 };
 
 // Work in progress, ignore this for now
-function addBookToLibrary(title, author, description, read) {
-  const newBook = new Book(title, author, description, read);
+function addBookToLibrary(title, author, read) {
+  const newBook = new Book(title, author, read);
   libraryRecord[title] = newBook;
   updateLibraryDisplay();
 }
@@ -67,11 +66,6 @@ function getNewBookNode(Book) {
   author.textContent = "by " + Book.author;
   author.classList.add("book-text");
   notStatus.appendChild(author);
-
-  const description = document.createElement("p");
-  description.textContent = Book.description;
-  description.classList.add("book-text");
-  notStatus.appendChild(description);
 
   const statusContainer = document.createElement("div");
   statusContainer.classList.add("status-container");
