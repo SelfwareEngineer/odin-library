@@ -53,23 +53,27 @@ function getNewBookNode(Book) {
   bookElementContent.classList.add("book-content");
   bookElement.appendChild(bookElementContent);
 
-  const notStatus = document.createElement("div");
-  notStatus.classList.add("not-status");
-  bookElementContent.appendChild(notStatus);
+  const bookContentTop = document.createElement("div");
+  bookContentTop.classList.add("book-content-top");
+  bookElementContent.appendChild(bookContentTop);
 
   const title = document.createElement("h3");
   title.textContent = Book.title;
   title.classList.add("book-title");
-  notStatus.appendChild(title);
+  bookContentTop.appendChild(title);
 
   const author = document.createElement("h4");
   author.textContent = "by " + Book.author;
   author.classList.add("book-text");
-  notStatus.appendChild(author);
+  bookContentTop.appendChild(author);
+
+  const bookContentBottom = document.createElement("div");
+  bookContentBottom.classList.add("book-content-bottom");
+  bookElementContent.appendChild(bookContentBottom);
 
   const statusContainer = document.createElement("div");
   statusContainer.classList.add("status-container");
-  bookElementContent.appendChild(statusContainer);
+  bookContentBottom.appendChild(statusContainer);
 
   const status = document.createElement("h4");
   status.textContent = "Status: ";
@@ -84,6 +88,12 @@ function getNewBookNode(Book) {
   }
   statusValue.classList.add("book-text");
   statusContainer.appendChild(statusValue);
+
+  const buttonContainer = document.createElement("div");
+  buttonContainer.classList.add("status-container");
+  bookContentBottom.appendChild(buttonContainer);
+
+  // Need to find a way to programmatically add SVGs
 
   return bookElement;
 }
