@@ -34,8 +34,16 @@ function addBookToLibrary(title, author, description, read) {
 
 function getNewBookNode(Book) {
   const bookElement = document.createElement("div");
-  const brightness = getRandomNumber(0.75, 1.2);
-  const color = getRandomNumber(0, 360);
+  let brightness = getRandomNumber(0.5) + 1;
+  const color = getRandomNumber(360);
+  // const color = 25;
+
+  if (color >= 315 || color <= 20) {
+    brightness -= 0.3;
+  } else if (color >= 30 && color <= 285) {
+    brightness += 0.5;
+  }
+
   bookElement.style.setProperty(
     "--book-filter",
     `hue-rotate(${color}deg) brightness(${brightness})`,
@@ -103,9 +111,6 @@ function removeBook(id) {
   updateLibraryDisplay();
 }
 
-function getRandomNumber(min, max) {
-  return (
-    Math.floor((Math.random() * (Math.abs(min) + Math.abs(max)) + min) * 100) /
-    100
-  );
+function getRandomNumber(num) {
+  return Math.floor(Math.random() * num * 100) / 100;
 }
