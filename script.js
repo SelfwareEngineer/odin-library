@@ -57,20 +57,22 @@ for (let i = 0; i < defaultBookCount; i++) {
 const myLibrary = {};
 
 function Book(title, author, description, read) {
-  self.title = title;
-  self.author = author;
-  self.description = description;
-  self.read = read;
+  this.title = title;
+  this.author = author;
+  this.description = description;
+  this.read = read;
 }
 
 Book.prototype.toggleRead = function () {
-  self.read = !self.read;
+  this.read = !this.read;
 };
 
+// Work in progress, ignore this for now
 function addBookToLibrary(title, author, description, read) {
   myLibrary[title] = new Book(title, author, description, read);
 }
 
+// Work in progress, ignore this for now
 function updateLibrary() {
   // clear existing library display
 
@@ -79,6 +81,7 @@ function updateLibrary() {
   }
 }
 
+// Work in progress, ignore this for now
 function removeBook(id) {
   // remove book of name from myLibrary
 
