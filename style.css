@@ -291,3 +291,11 @@ span {
   text-wrap: nowrap;
   font-size: 1.5rem;
 }
+
+form div {
+  display: grid;
+}
+
+li {
+  list-style: none;
+}

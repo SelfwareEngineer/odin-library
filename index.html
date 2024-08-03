@@ -21,5 +21,33 @@
         <p>Add Book</p>
       </button>
     </div>
+    <dialog>
+      <form method="dialog">
+        <div>
+          <label for="title"
+            >Title:
+            <input type="text" id="title" />
+          </label>
+          <label for="author"
+            >Author:
+            <input type="text" id="author" />
+          </label>
+          <fieldset>
+            <legend>Have you read this book already?</legend>
+
+            <label for="yes"
+              >Yes
+              <input type="radio" id="yes" name="read" value="yes" />
+            </label>
+
+            <label for="no"
+              >No
+              <input type="radio" id="no" name="read" value="no" />
+            </label>
+          </fieldset>
+          <button type="submit">Add Book</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

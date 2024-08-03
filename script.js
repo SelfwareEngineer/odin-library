@@ -2,6 +2,8 @@
 
 const libraryRecord = {};
 const libraryDisplay = document.querySelector(".library");
+const addBookBtn = document.querySelector(".add-book");
+const dialog = document.querySelector("dialog");
 
 // This section is just for testing, remove on project completion
 const defaultBookCount = 12;
@@ -82,7 +84,7 @@ function getNewBookNode(Book) {
   } else {
     statusValue.textContent = "Not read";
   }
-  statusValue.classList.add("book-text");
+  statusValue.classList.add("book-text", "book-status");
   statusContainer.appendChild(statusValue);
 
   const bookContentBottom = document.createElement("div");
@@ -96,6 +98,7 @@ function getNewBookNode(Book) {
   // Need to find a way to programmatically add SVGs
   const editBookBtn = document.createElement("button");
   editBookBtn.type = "button";
+  editBookBtn.classList.add("edit-book-button");
   buttonContainer.appendChild(editBookBtn);
   editBookBtn.appendChild(
     getSVG(
@@ -108,6 +111,7 @@ function getNewBookNode(Book) {
 
   const removeBookBtn = document.createElement("button");
   removeBookBtn.type = "button";
+  removeBookBtn.classList.add("remove-book-button");
   buttonContainer.appendChild(removeBookBtn);
   removeBookBtn.appendChild(
     getSVG(
@@ -156,3 +160,11 @@ function getSVG(xmlns, viewbox, title, path) {
 
   return svg;
 }
+
+// When I left off, this was triggering if I was clicking only the button but not if also clicking any of its children
+document.addEventListener("click", (e) => {
+  console.log(e.target.classList);
+  if (e.target.classList.contains("edit-book-button")) {
+    dialog.showModal();
+  }
+});
