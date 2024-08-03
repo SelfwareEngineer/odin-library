@@ -46,24 +46,24 @@ function getNewBookNode(Book) {
   bookElementContent.classList.add("book-content");
   bookElement.appendChild(bookElementContent);
 
-  const titleContainer = document.createElement("div");
-  titleContainer.classList.add("book-title-container");
-  bookElementContent.appendChild(titleContainer);
+  const notStatus = document.createElement("div");
+  notStatus.classList.add("not-status");
+  bookElementContent.appendChild(notStatus);
 
   const title = document.createElement("h3");
   title.textContent = Book.title;
   title.classList.add("book-title");
-  titleContainer.appendChild(title);
+  notStatus.appendChild(title);
 
   const author = document.createElement("h4");
   author.textContent = "by " + Book.author;
   author.classList.add("book-text");
-  bookElementContent.appendChild(author);
+  notStatus.appendChild(author);
 
   const description = document.createElement("p");
   description.textContent = Book.description;
   description.classList.add("book-text");
-  bookElementContent.appendChild(description);
+  notStatus.appendChild(description);
 
   const statusContainer = document.createElement("div");
   statusContainer.classList.add("status-container");

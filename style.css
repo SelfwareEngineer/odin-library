@@ -164,9 +164,11 @@ span {
 .library {
   border-radius: 0.5rem;
   display: grid;
+  grid-auto-rows: minmax(22rem, 1fr);
+  width: 100%;
   gap: 1rem;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
 .book {
@@ -206,21 +208,29 @@ span {
   border-radius: 0.5rem;
   padding: 0.5rem;
 
-  position: relative;
   z-index: 1; /* .book::after covers this otherwise */
+  position: relative;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  justify-content: space-between;
 }
 
 .book-title {
   font-family: "book title";
   letter-spacing: 0.2rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .book-text {
   font-family: "book text";
+  font-size: 1.2rem;
+}
+
+.not-status {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .status-container {
