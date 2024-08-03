@@ -1,60 +1,18 @@
 "use strict";
 
-// These are placeholders, disable when done styling
+const libraryRecord = {};
+const libraryDisplay = document.querySelector(".library");
+
+// This section is just for testing, remove on project completion
 const defaultBookCount = 12;
-const library = document.querySelector(".library");
+let count = 0;
 
 for (let i = 0; i < defaultBookCount; i++) {
-  const book = document.createElement("div");
-  const brightness = getRandomNumber(0.75, 1.2);
-  const color = getRandomNumber(0, 360);
-  book.style.setProperty(
-    "--book-filter",
-    `hue-rotate(${color}deg) brightness(${brightness})`,
-  );
-  book.classList.add("book");
-
-  const bookContent = document.createElement("div");
-  bookContent.classList.add("book-content");
-  book.appendChild(bookContent);
-
-  const titleContainer = document.createElement("div");
-  bookContent.appendChild(titleContainer);
-
-  const title = document.createElement("h3");
-  title.textContent = "Placeholder";
-  title.classList.add("book-title");
-  titleContainer.appendChild(title);
-
-  const author = document.createElement("h4");
-  author.textContent = "by Author";
-  author.classList.add("book-text");
-  bookContent.appendChild(author);
-
-  const description = document.createElement("p");
-  description.textContent =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-  description.classList.add("book-text");
-  bookContent.appendChild(description);
-
-  const statusContainer = document.createElement("div");
-  statusContainer.classList.add("status-container");
-  bookContent.appendChild(statusContainer);
-
-  const status = document.createElement("h4");
-  status.textContent = "Status: ";
-  status.classList.add("book-text");
-  statusContainer.appendChild(status);
-
-  const statusValue = document.createElement("span");
-  statusValue.textContent = "Not read";
-  statusValue.classList.add("book-text");
-  statusContainer.appendChild(statusValue);
-
-  library.appendChild(book);
+  count++;
+  addBookToLibrary("Placeholder " + count, "Author", "test", false);
 }
 
-const myLibrary = {};
+// Start of actual script
 
 function Book(title, author, description, read) {
   this.title = title;
@@ -69,23 +27,80 @@ Book.prototype.toggleRead = function () {
 
 // Work in progress, ignore this for now
 function addBookToLibrary(title, author, description, read) {
-  myLibrary[title] = new Book(title, author, description, read);
+  const newBook = new Book(title, author, description, read);
+  libraryRecord[title] = newBook;
+  updateLibraryDisplay();
+}
+
+function getNewBookNode(Book) {
+  const bookElement = document.createElement("div");
+  const brightness = getRandomNumber(0.75, 1.2);
+  const color = getRandomNumber(0, 360);
+  bookElement.style.setProperty(
+    "--book-filter",
+    `hue-rotate(${color}deg) brightness(${brightness})`,
+  );
+  bookElement.classList.add("book");
+
+  const bookElementContent = document.createElement("div");
+  bookElementContent.classList.add("book-content");
+  bookElement.appendChild(bookElementContent);
+
+  const titleContainer = document.createElement("div");
+  titleContainer.classList.add("book-title-container");
+  bookElementContent.appendChild(titleContainer);
+
+  const title = document.createElement("h3");
+  title.textContent = Book.title;
+  title.classList.add("book-title");
+  titleContainer.appendChild(title);
+
+  const author = document.createElement("h4");
+  author.textContent = "by " + Book.author;
+  author.classList.add("book-text");
+  bookElementContent.appendChild(author);
+
+  const description = document.createElement("p");
+  description.textContent = Book.description;
+  description.classList.add("book-text");
+  bookElementContent.appendChild(description);
+
+  const statusContainer = document.createElement("div");
+  statusContainer.classList.add("status-container");
+  bookElementContent.appendChild(statusContainer);
+
+  const status = document.createElement("h4");
+  status.textContent = "Status: ";
+  status.classList.add("book-text");
+  statusContainer.appendChild(status);
+
+  const statusValue = document.createElement("span");
+  if (Book.read) {
+    statusValue.textContent = "Read";
+  } else {
+    statusValue.textContent = "Not read";
+  }
+  statusValue.classList.add("book-text");
+  statusContainer.appendChild(statusValue);
+
+  return bookElement;
 }
 
 // Work in progress, ignore this for now
-function updateLibrary() {
-  // clear existing library display
-
-  for (const i in myLibrary) {
-    // create card for i and add to library display
+function updateLibraryDisplay() {
+  while (libraryDisplay.firstChild) {
+    libraryDisplay.removeChild(libraryDisplay.firstChild);
+  }
+  for (const book in libraryRecord) {
+    libraryDisplay.appendChild(getNewBookNode(libraryRecord[book]));
   }
 }
 
 // Work in progress, ignore this for now
 function removeBook(id) {
-  // remove book of name from myLibrary
+  // remove book of name from libraryRecord
 
-  updateLibrary();
+  updateLibraryDisplay();
 }
 
 function getRandomNumber(min, max) {
