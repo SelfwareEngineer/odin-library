@@ -263,7 +263,6 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(min-content + 1rem);
   padding: 1rem;
   border-style: none;
   border-radius: 0.5rem;
