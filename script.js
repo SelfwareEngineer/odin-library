@@ -163,8 +163,9 @@ function getSVG(xmlns, viewbox, title, path) {
 
 // When I left off, this was triggering if I was clicking only the button but not if also clicking any of its children
 document.addEventListener("click", (e) => {
-  console.log(e.target.classList);
-  if (e.target.classList.contains("edit-book-button")) {
+  const isEditButton = e.target.closest(".edit-book-button");
+
+  if (isEditButton) {
     dialog.showModal();
   }
 });
