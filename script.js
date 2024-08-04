@@ -20,6 +20,15 @@ function Book(title, author, read) {
   this.title = title;
   this.author = author;
   this.read = read;
+  this.brightness = getRandomNumber(0.5) + 1;
+  this.color = getRandomNumber(360);
+  // const color = 25;
+
+  if (this.color >= 315 || this.color <= 20) {
+    this.brightness -= 0.3;
+  } else if (this.color >= 30 && this.color <= 285) {
+    this.brightness += 0.5;
+  }
 }
 
 Book.prototype.toggleRead = function () {
@@ -35,19 +44,10 @@ function addBookToLibrary(title, author, read) {
 
 function getNewBookNode(Book) {
   const bookElement = document.createElement("div");
-  let brightness = getRandomNumber(0.5) + 1;
-  const color = getRandomNumber(360);
-  // const color = 25;
-
-  if (color >= 315 || color <= 20) {
-    brightness -= 0.3;
-  } else if (color >= 30 && color <= 285) {
-    brightness += 0.5;
-  }
 
   bookElement.style.setProperty(
     "--book-filter",
-    `hue-rotate(${color}deg) brightness(${brightness})`,
+    `hue-rotate(${Book.color}deg) brightness(${Book.brightness})`,
   );
   bookElement.classList.add("book");
 
