@@ -26,26 +26,26 @@
         <div>
           <label for="title"
             >Title:
-            <input type="text" id="title" />
+            <input type="text" id="title" name="title" />
           </label>
           <label for="author"
             >Author:
-            <input type="text" id="author" />
+            <input type="text" id="author" name="author" />
           </label>
           <fieldset>
             <legend>Have you read this book already?</legend>
 
             <label for="yes"
               >Yes
-              <input type="radio" id="yes" name="read" value="yes" />
+              <input type="radio" id="yes" name="read" value="true" />
             </label>
 
             <label for="no"
               >No
-              <input type="radio" id="no" name="read" value="no" />
+              <input type="radio" id="no" name="read" value="false" />
             </label>
           </fieldset>
-          <button type="submit">Add Book</button>
+          <button type="submit">Finish</button>
         </div>
       </form>
     </dialog>

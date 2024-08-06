@@ -4,19 +4,30 @@ const libraryRecord = {};
 const libraryDisplay = document.querySelector(".library");
 const addBookBtn = document.querySelector(".add-book");
 const dialog = document.querySelector("dialog");
+const form = document.querySelector("form");
+let bookToEdit = null;
 
 // This section is just for testing, remove on project completion
 const defaultBookCount = 12;
 let count = 0;
 
-for (let i = 0; i < defaultBookCount; i++) {
+function getPlaceholderBook() {
   count++;
-  addBookToLibrary("Placeholder " + count, "Author", false);
+  return {
+    title: "Placeholder " + count,
+    author: "Author",
+    read: false,
+  };
+}
+
+for (let i = 0; i < defaultBookCount; i++) {
+  addBookToLibrary(getPlaceholderBook());
 }
 
 // Start of actual script
 
 function Book(title, author, read) {
+  this.id = Date.now() + getRandomNumber(1000000000000);
   this.title = title;
   this.author = author;
   this.read = read;
@@ -36,10 +47,28 @@ Book.prototype.toggleRead = function () {
 };
 
 // Work in progress, ignore this for now
-function addBookToLibrary(title, author, read) {
-  const newBook = new Book(title, author, read);
-  libraryRecord[title] = newBook;
+function addBookToLibrary(formData) {
+  const newBook = new Book(formData.title, formData.author, formData.read);
+  libraryRecord[newBook.id] = newBook;
   updateLibraryDisplay();
+}
+
+function updateBook(targetBookID, bookData) {
+  libraryRecord[targetBookID].title = bookData.title;
+  libraryRecord[targetBookID].author = bookData.author;
+  libraryRecord[targetBookID].read = bookData.read;
+
+  updateLibraryDisplay();
+}
+
+// Work in progress, ignore this for now
+function updateLibraryDisplay() {
+  while (libraryDisplay.firstChild) {
+    libraryDisplay.removeChild(libraryDisplay.firstChild);
+  }
+  for (const book in libraryRecord) {
+    libraryDisplay.appendChild(getNewBookNode(libraryRecord[book]));
+  }
 }
 
 function getNewBookNode(Book) {
@@ -50,6 +79,7 @@ function getNewBookNode(Book) {
     `hue-rotate(${Book.color}deg) brightness(${Book.brightness})`,
   );
   bookElement.classList.add("book");
+  bookElement.setAttribute("data-id", Book.id);
 
   const bookElementContent = document.createElement("div");
   bookElementContent.classList.add("book-content");
@@ -79,7 +109,7 @@ function getNewBookNode(Book) {
   statusContainer.appendChild(status);
 
   const statusValue = document.createElement("span");
-  if (Book.read) {
+  if (Book.read === "true") {
     statusValue.textContent = "Read";
   } else {
     statusValue.textContent = "Not read";
@@ -126,18 +156,9 @@ function getNewBookNode(Book) {
 }
 
 // Work in progress, ignore this for now
-function updateLibraryDisplay() {
-  while (libraryDisplay.firstChild) {
-    libraryDisplay.removeChild(libraryDisplay.firstChild);
-  }
-  for (const book in libraryRecord) {
-    libraryDisplay.appendChild(getNewBookNode(libraryRecord[book]));
-  }
-}
-
-// Work in progress, ignore this for now
 function removeBook(id) {
   // remove book of name from libraryRecord
+  delete libraryRecord[id];
 
   updateLibraryDisplay();
 }
@@ -161,11 +182,34 @@ function getSVG(xmlns, viewbox, title, path) {
   return svg;
 }
 
-// When I left off, this was triggering if I was clicking only the button but not if also clicking any of its children
 document.addEventListener("click", (e) => {
-  const isEditButton = e.target.closest(".edit-book-button");
+  const book = e.target.closest(".book");
+  const editButton = e.target.closest(".edit-book-button");
+  const removeButton = e.target.closest(".remove-book-button");
+  const addButton = e.target.closest(".add-book");
 
-  if (isEditButton) {
+  if (editButton) {
+    dialog.setAttribute("data-mode", "edit");
+    bookToEdit = book.dataset.id;
+    dialog.showModal();
+  } else if (removeButton) {
+    removeBook(book.dataset.id);
+  } else if (addButton) {
+    dialog.setAttribute("data-mode", "add");
     dialog.showModal();
   }
+});
+
+document.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const dataObj = Object.fromEntries(data);
+  console.log(dataObj);
+
+  if (dialog.dataset.mode === "edit") {
+    updateBook(bookToEdit, dataObj);
+  } else if (dialog.dataset.mode === "add") {
+    addBookToLibrary(dataObj);
+  }
+  dialog.close();
 });
