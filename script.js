@@ -7,22 +7,22 @@ const dialog = document.querySelector("dialog");
 const form = document.querySelector("form");
 let bookToEdit = null;
 
-// This section is just for testing, remove on project completion
-const defaultBookCount = 12;
-let count = 0;
-
-function getPlaceholderBook() {
-  count++;
-  return {
-    title: "Placeholder " + count,
-    author: "Author",
-    read: false,
-  };
-}
-
-for (let i = 0; i < defaultBookCount; i++) {
-  addBookToLibrary(getPlaceholderBook());
-}
+// This section is just for testing, disable on project completion
+// const defaultBookCount = 12;
+// let count = 0;
+//
+// function getPlaceholderBook() {
+//   count++;
+//   return {
+//     title: "Placeholder " + count,
+//     author: "Author",
+//     read: false,
+//   };
+// }
+//
+// for (let i = 0; i < defaultBookCount; i++) {
+//   addBookToLibrary(getPlaceholderBook());
+// }
 
 // Start of actual script
 
