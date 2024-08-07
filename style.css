@@ -256,6 +256,10 @@ span {
   background-color: transparent;
 }
 
+.button-container button svg {
+  height: 1.5rem;
+}
+
 .button-container button:hover {
   filter: drop-shadow(0 0 0.25rem white) drop-shadow(0 0 0.25rem white);
 }
