@@ -9,7 +9,7 @@
 /*
   2. Remove default margin
 */
-* {
+*:not(dialog) {
   margin: 0;
 }
 /*
@@ -82,6 +82,10 @@ h6 {
   isolation: isolate;
 }
 
+input:focus-visible {
+  outline: none;
+}
+
 @font-face {
   font-family: "medieval";
   src:
@@ -118,6 +122,7 @@ body {
   background-size: cover;
   display: flex;
   justify-content: center;
+  align-items: center;
   font-family: "book text";
 }
 
@@ -291,10 +296,59 @@ span {
   font-size: 1.5rem;
 }
 
+dialog {
+  z-index: 3;
+  border-style: none;
+  background: center/contain no-repeat url("images/parchment.png");
+  width: 50vw;
+  height: min-content;
+  padding: 8rem;
+}
+
 form div {
   display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+label {
+  font-size: 120%;
+}
+
+input {
+  border-style: none;
+  background-color: transparent;
+  border-bottom: 2px solid black;
+  width: 100%;
+}
+
+fieldset {
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+input[type="radio"] {
+  width: auto;
 }
 
 li {
   list-style: none;
+}
+
+form button {
+  border-style: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+}
+
+form button:hover {
+  filter: drop-shadow(0 0 0.25rem white) drop-shadow(0 0 0.25rem white);
+}
+
+form button:active {
+  color: white;
 }
